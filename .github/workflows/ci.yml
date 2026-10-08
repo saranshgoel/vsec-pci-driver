@@ -1,0 +1,26 @@
+name: Kernel Driver Build CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-arm64-driver:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Linux Build Dependencies & Cross-Compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-aarch64-linux-gnu linux-headers-generic
+
+      - name: Compile Kernel Module
+        run: |
+          cd driver
+          # Cross-compile for arm64 target architecture
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
