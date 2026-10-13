@@ -4,8 +4,11 @@
 *.mod.c
 *.symvers
 *.order
+*.cmd
 .tmp_versions/
 *.build.log
 qemu-build/
 Image
 rootfs.cpio.gz
+build/*
+qemu-env/*
